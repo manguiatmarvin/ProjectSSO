@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -95,7 +96,16 @@ public class MyContoller {
 		User user = userService.getUser(principal.getName());
 		model.addAttribute("message", " Welcome back  " + principal.getName());
 		model.addAttribute("user", user);
-		return "index";
+		
+		UserProfile profile = user.getUserProfile();
+		if(profile!=null) {
+			System.out.println(profile.getEmailAddress());
+			return "index";
+		}
+		
+		return "ProfileForm";
+		
+		
 	}
 	
 	

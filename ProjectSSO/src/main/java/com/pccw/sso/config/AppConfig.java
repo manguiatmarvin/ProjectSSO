@@ -25,6 +25,14 @@ import static org.hibernate.cfg.Environment.*;
 	                      @ComponentScan("com.pccw.sso.service"),
 	                      @ComponentScan("com.pccw.sso.util")})
 
+/**
+ * 
+ * ProjectSSO 
+ * @author Marvin Manguiat
+ * @created 30 Aug 2018
+ *
+ */
+
 public class AppConfig {
 
   @Autowired

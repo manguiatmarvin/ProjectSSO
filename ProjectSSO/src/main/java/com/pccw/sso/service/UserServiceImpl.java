@@ -17,6 +17,13 @@ import com.pccw.sso.model.Authorities;
 import com.pccw.sso.model.User;
 import com.pccw.sso.util.SSOSystem;
 
+/**
+ * 
+ * ProjectSSO 
+ * @author Marvin Manguiat
+ * @created 31 Aug 2018
+ *
+ */
 
 @Service
 public class UserServiceImpl  implements UserService{

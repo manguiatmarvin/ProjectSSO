@@ -15,21 +15,18 @@ import com.pccw.sso.dao.AuthoritiesDao;
 import com.pccw.sso.dao.UserDetailsDao;
 import com.pccw.sso.model.Authorities;
 import com.pccw.sso.model.User;
+import com.pccw.sso.util.SSOSystem;
 
 
 @Service
 public class UserServiceImpl  implements UserService{
 	
-	
-	  @Autowired 
-	  private UserDetailsDao userDetailsDao;
-	  @Autowired 
-      private AuthoritiesDao authoritiesDao;
-	  
+	@Autowired 
+	private UserDetailsDao userDetailsDao;
 	  
 	@Override
 	public void addNewUser(User user) {
-		userDetailsDao.addUser (user);
+		userDetailsDao.addUser(user);
 	}
 
 	@Override
@@ -43,15 +40,18 @@ public class UserServiceImpl  implements UserService{
 		userDetailsDao.updateUser(user);
 	}
 
-	@Override
-	public User getUser(String username) throws UsernameNotFoundException {
-		return userDetailsDao.findUserByUsername(username);
-	}
+	
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public User getUser(String username) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		return userDetailsDao.findUserByUsername(username);
 	}
 
 

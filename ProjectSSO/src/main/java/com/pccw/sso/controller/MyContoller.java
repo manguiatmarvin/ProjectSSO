@@ -40,6 +40,8 @@ import com.pccw.sso.model.UserProfile;
 import com.pccw.sso.service.ClientCredentialService;
 import com.pccw.sso.service.EmployeeService;
 import com.pccw.sso.service.UserService;
+import com.pccw.sso.util.SSOSystem;
+import com.pccw.sso.util.ServiceLayerObjects;
 
 
 /**
@@ -52,21 +54,16 @@ import com.pccw.sso.service.UserService;
 
 @Controller
 public class MyContoller {
+	
+	@Autowired 
+	private UserService userService;
+	
+	@Autowired
+	private ClientCredentialService clientCredentialService;
+	
+	
 
 	final static Logger logger = Logger.getLogger(MyContoller.class);
-	
-	/**
-	 * One Ring to rule them all, One Ring to find them,
-     * One Ring to bring them all and in the darkness bind them
-	 */
-	
- 
-	@Autowired(required=true)
-	UserService userService;
-	
-	@Autowired(required=true)
-	ClientCredentialService clientCredentialService;
-	
 	
 	@RequestMapping("/test")
 	public void test(HttpServletRequest request, HttpServletResponse response) {
@@ -79,12 +76,22 @@ public class MyContoller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		String name = null;
+		if(request.getQueryString()!=null) {
+			name = request.getQueryString().toString();
+		}
+		
+		System.out.println("name: "+name);
+
+		
 		printWriter.println("Hello World!");
+
 		RequestDispatcher rd = null;
 		rd =  request.getRequestDispatcher("/WEB-INF/views/Test.jsp");
 		
 		try {
-			rd.forward(request, response);
+			rd.include(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
 		}
@@ -93,7 +100,11 @@ public class MyContoller {
 	
 	@RequestMapping("/")
 	public String index(Model model, Principal principal) {
+
+		
+		
 		User user = userService.getUser(principal.getName());
+		
 		model.addAttribute("message", " Welcome back  " + principal.getName());
 		model.addAttribute("user", user);
 		
@@ -119,9 +130,10 @@ public class MyContoller {
 	
 	  @RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	    public ModelAndView saveUser(@ModelAttribute User user) {
+		  
 	        if (user.getUserId()==null) { // if employee id is 0 then creating the
 	        	user.setEnabled(true);
-	        	String encoded=new BCryptPasswordEncoder().encode(user.getPassword());
+	        	String encoded=SSOSystem.getPasswordEncoder().encode(user.getPassword());
 	        	user.setPassword(encoded);
 	        	userService.addNewUser(user);
 	        } 
@@ -160,7 +172,7 @@ public class MyContoller {
 		 * system var: clientId, redirectUri if valid then set clientIdValid = true
 		 */
 		
-		 ClientCredential  cred = clientCredentialService.getClientCredentials(clientId);
+		 ClientCredential  cred =  clientCredentialService.getClientCredentials(clientId);
 		 
 		 if(cred!=null && cred.getCallBackUrl().equals(redirectUri) ) {
 			 System.out.println(cred.getClientSecret());

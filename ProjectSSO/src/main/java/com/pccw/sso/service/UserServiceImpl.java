@@ -15,7 +15,7 @@ import com.pccw.sso.dao.AuthoritiesDao;
 import com.pccw.sso.dao.UserDetailsDao;
 import com.pccw.sso.model.Authorities;
 import com.pccw.sso.model.User;
-import com.pccw.sso.util.SSOSystem;
+
 
 
 @Service

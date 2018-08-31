@@ -40,7 +40,7 @@ import com.pccw.sso.model.UserProfile;
 import com.pccw.sso.service.ClientCredentialService;
 import com.pccw.sso.service.EmployeeService;
 import com.pccw.sso.service.UserService;
-import com.pccw.sso.util.SSOSystem;
+import com.pccw.sso.util.SSOSystemUtil;
 /**
  * 
  * ProjectSSO 
@@ -130,7 +130,7 @@ public class MyContoller {
 		  
 	        if (user.getUserId()==null) { // if employee id is 0 then creating the
 	        	user.setEnabled(true);
-	        	String encoded=SSOSystem.getPasswordEncoder().encode(user.getPassword());
+	        	String encoded=SSOSystemUtil.getPasswordEncoder().encode(user.getPassword());
 	        	user.setPassword(encoded);
 	        	userService.addNewUser(user);
 	        } 

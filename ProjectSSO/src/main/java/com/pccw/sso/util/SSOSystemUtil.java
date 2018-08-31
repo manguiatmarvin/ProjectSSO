@@ -22,11 +22,8 @@ import com.pccw.sso.service.UserService;
  *
  */
 
-@Service
-public class SSOSystem {
 
-  
-     
+public class SSOSystemUtil {
      public static BCryptPasswordEncoder getPasswordEncoder() {
     	 return  new BCryptPasswordEncoder();
      }

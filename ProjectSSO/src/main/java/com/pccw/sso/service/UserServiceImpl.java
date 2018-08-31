@@ -15,13 +15,9 @@ import com.pccw.sso.dao.AuthoritiesDao;
 import com.pccw.sso.dao.UserDetailsDao;
 import com.pccw.sso.model.Authorities;
 import com.pccw.sso.model.User;
-/**
- * 
- * ProjectSSO 
- * @author Marvin Manguiat
- * @created 31 Aug 2018
- *
- */
+
+
+
 @Service
 public class UserServiceImpl  implements UserService{
 	

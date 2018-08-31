@@ -41,9 +41,6 @@ import com.pccw.sso.service.ClientCredentialService;
 import com.pccw.sso.service.EmployeeService;
 import com.pccw.sso.service.UserService;
 import com.pccw.sso.util.SSOSystem;
-import com.pccw.sso.util.ServiceLayerObjects;
-
-
 /**
  * 
  * ProjectSSO 

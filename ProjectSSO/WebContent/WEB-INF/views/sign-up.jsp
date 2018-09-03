@@ -64,7 +64,7 @@ body {
 </head>
 <body class="text-center">
 	<div align="center">
-		<h1>New/Edit Employee</h1>
+		<h1>New User Signup</h1>
 		<form:form action="addUser" method="post" modelAttribute="user"
 			cssClass="form-signin">
 
@@ -78,9 +78,15 @@ body {
 			<form:input path="password" cssClass="form-control"
 				placeholder='password' />
 			<form:label path="password" cssClass="sr-only ">Enter  Password:</form:label>
+			
+				<form:input path="userProfile.firstname" cssClass="form-control"
+				placeholder='Firstname' />
+			<form:label path="userProfile.firstname" cssClass="sr-only ">Enter  Firstname:</form:label>
+
+			
 
 
-
+    
 
 
 

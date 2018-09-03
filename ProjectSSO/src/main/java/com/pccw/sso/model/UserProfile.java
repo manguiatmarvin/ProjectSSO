@@ -11,78 +11,103 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity()
 @Table(name = "USER_PROFILE")
-public class UserProfile implements Serializable{
-
+public class UserProfile implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private BigInteger id;
-	
+
 	@Column(name = "firstname")
 	private String firstname;
-	
+
 	@Column(name = "lastname")
 	private String lastname;
-	
+
 	@Column(name = "mi")
 	private String middleName;
-	
+
 	@Column(name = "dob")
 	@Temporal(TemporalType.DATE)
 	private Date dob;
 
 	@Column(name = "gender")
 	private String gender;
-	
+
 	@Column(name = "email_address")
 	private String emailAddress;
+
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="created")
+	private Date creted;
+	@Temporal(TemporalType.DATE)
+	@Column(name="modified")
+	private Date modified;
+
 	
 
-
-	public UserProfile() {}
 	
+	
+
+	public UserProfile() {
+	}
+
 	/**
 	 * Setters and Getters
 	 */
-	
+
 	public String getFirstname() {
 		return firstname;
 	}
+
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
+
 	public String getLastname() {
 		return lastname;
 	}
+
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
+
 	public String getMiddleName() {
 		return middleName;
 	}
+
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
 	}
+
 	public Date getDob() {
 		return dob;
 	}
+
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
+
 	public String getGender() {
 		return gender;
 	}
+
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	
+
 	public BigInteger getId() {
 		return id;
 	}
@@ -99,4 +124,26 @@ public class UserProfile implements Serializable{
 		this.emailAddress = emailAddress;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	
+	public Date getCreted() {
+		return creted;
+	}
+	public void setCreted(Date creted) {
+		this.creted = creted;
+	}
+	public Date getModified() {
+		return modified;
+	}
+	public void setModified(Date modified) {
+		this.modified = modified;
+	}
+	
 }

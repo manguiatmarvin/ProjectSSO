@@ -24,9 +24,8 @@ public class Authorities implements Serializable {
 	@Column(name = "AUTHORITY")
 	private String authority;
 
-
-
 	@ManyToOne
+	@JoinColumn(name="user_id")
 	private User user;
 
 	public Authorities() {

@@ -120,6 +120,7 @@ public class MyContoller {
 	@RequestMapping(value = "/sign-up", method = RequestMethod.GET)
 	public String signUp(Model model) {
 		 User user = new User();
+		 user.setUserProfile(new UserProfile());
 	        model.addAttribute("user", user);
 	        return "sign-up";
 	}
@@ -128,10 +129,17 @@ public class MyContoller {
 	  @RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	    public ModelAndView saveUser(@ModelAttribute User user) {
 		  
+	
+		  
 	        if (user.getUserId()==null) { // if employee id is 0 then creating the
 	        	user.setEnabled(true);
 	        	String encoded=SSOSystemUtil.getPasswordEncoder().encode(user.getPassword());
 	        	user.setPassword(encoded);
+	        	
+	            String firstname = user.getUserProfile().getFirstname();
+	            
+	            System.out.println(firstname);
+	            
 	        	userService.addNewUser(user);
 	        } 
 	        return new ModelAndView("redirect:/");

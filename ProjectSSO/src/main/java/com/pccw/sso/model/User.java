@@ -33,7 +33,7 @@ public class User implements Serializable {
 	private String password;
 
 	@Column(name = "ENABLED", nullable = false)
-	private boolean enabled;
+	private boolean enabled;   
 
 	@OneToMany(fetch = FetchType.EAGER ,cascade = CascadeType.ALL, mappedBy = "user")
 	private Set<Authorities> authorities = new HashSet<>();
@@ -41,8 +41,7 @@ public class User implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private Set<ClientCredential> clientCredential = new HashSet<>();
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "ID")
+	@OneToOne(cascade = CascadeType.ALL, mappedBy="user")
 	private UserProfile userProfile;
 
 	public User() {

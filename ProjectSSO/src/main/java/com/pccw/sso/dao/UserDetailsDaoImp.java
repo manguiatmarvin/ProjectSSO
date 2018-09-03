@@ -1,6 +1,7 @@
 package com.pccw.sso.dao;
 
 import java.math.BigInteger;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import com.pccw.sso.model.Authorities;
 import com.pccw.sso.model.User;
+import com.pccw.sso.model.UserProfile;
 
 
 
@@ -51,7 +53,19 @@ public class UserDetailsDaoImp implements UserDetailsDao {
 		   Set<Authorities> authList = new HashSet<>();
 		   authList.add(au);
 		   user.setAuthorities(authList); 
-		   sssionFactory.getCurrentSession().save(user);
+		   
+		   UserProfile up =  new UserProfile();
+		   up.setDob(new Date());
+		   up.setEmailAddress(user.getUsername()+"@gmail.com");
+		   up.setFirstname(user.getUserProfile().getFirstname());
+		   up.setLastname(user.getUsername());
+		   up.setMiddleName("");
+		   up.setUser(user);
+		   up.setCreted(new Date());
+		   up.setModified(new Date());
+		   user.setUserProfile(up);
+		   
+		   sssionFactory.getCurrentSession().persist(user);
 		
 	}
 

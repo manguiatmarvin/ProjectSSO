@@ -59,27 +59,38 @@ body {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }
+
+.error{
+  color:red;
+  font-size:11px;
+}
 </style>
 
 </head>
 <body class="text-center">
 	<div align="center">
 		<h1>New User Signup</h1>
-		<form:form action="addUser" method="post" modelAttribute="user"
+		<form:form action="sign-up" method="post" modelAttribute="user"
 			cssClass="form-signin">
 
 			<form:hidden path="userId" />
 
-			<form:input path="username" cssClass="form-control"
-				placeholder='Username' />
-			<form:label path="username" cssClass="sr-only ">Enter  Username:</form:label>
+			<form:input path="username" cssClass="form-control" placeholder='Username' type="text" />
+			<form:errors path="username"   cssClass="error" />
+			<form:label path="username" cssClass="sr-only ">Enter  User Name:</form:label>
 
 
-			<form:input path="password" cssClass="form-control"
-				placeholder='password' />
+			<form:input path="password" cssClass="form-control" placeholder='password' type="password" />
+			<form:errors path="password"   cssClass="error" />
 			<form:label path="password" cssClass="sr-only ">Enter  Password:</form:label>
 			
-				<form:input path="userProfile.firstname" cssClass="form-control"
+			
+				<form:input path="repassword" cssClass="form-control" placeholder='password' type="password" />
+			<form:errors path="repassword"   cssClass="error" />
+			<form:label path="password" cssClass="sr-only ">Enter  Password:</form:label>
+			
+			
+		    <form:input path="userProfile.firstname" cssClass="form-control"
 				placeholder='Firstname' />
 			<form:label path="userProfile.firstname" cssClass="sr-only ">Enter  Firstname:</form:label>
 

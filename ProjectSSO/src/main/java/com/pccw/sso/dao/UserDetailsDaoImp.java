@@ -46,14 +46,9 @@ public class UserDetailsDaoImp implements UserDetailsDao {
     @Override
 	public void addUser(User user) {
     	System.out.println("Adding new user "+user.getUsername());
-    	   Authorities au = new Authorities();
-		   au.setAuthority("ROLE_ADMIN");
-		   au.setUser(user);
-		   au.setAuthorityId(null);
-		   Set<Authorities> authList = new HashSet<>();
-		   authList.add(au);
-		   user.setAuthorities(authList); 
-		   
+    	 
+		   user.setAuthorities(createAuthUser("USER")); 
+		   user.getAuthorities().forEach((authority)->{authority.setUser(user);});
 		   UserProfile up =  new UserProfile();
 		   up.setDob(new Date());
 		   up.setEmailAddress(user.getUsername()+"@gmail.com");
@@ -64,9 +59,18 @@ public class UserDetailsDaoImp implements UserDetailsDao {
 		   up.setCreted(new Date());
 		   up.setModified(new Date());
 		   user.setUserProfile(up);
-		   
 		   sssionFactory.getCurrentSession().persist(user);
 		
+	}
+	
+	
+	private Set<Authorities> createAuthUser(String role) {
+		Set<Authorities> authList = new HashSet<>();
+		  Authorities au = new Authorities();
+		   au.setAuthority(role.equalsIgnoreCase("ADMIN") ? "ROLE_ADMIN":"ROLE_USER");
+		   au.setAuthorityId(null);
+		   authList.add(au);
+		return authList;
 	}
 
 	@Transactional

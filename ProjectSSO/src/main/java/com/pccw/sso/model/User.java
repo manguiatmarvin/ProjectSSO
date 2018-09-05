@@ -15,8 +15,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import com.pccw.sso.validators.FieldsValueMatch;
 import javax.persistence.CascadeType;
 
+/**
+ * 
+ * ProjectSSO 
+ * @author Marvin Manguiat
+ * @created 5 Sep 2018
+ *
+ */
+@FieldsValueMatch.List({ 
+    @FieldsValueMatch(
+      field = "password", 
+      fieldMatch = "repassword", 
+      message = "Passwords do not match!"
+    )
+})
 @Entity
 @Table(name = "USERS")
 public class User implements Serializable {
@@ -27,10 +45,15 @@ public class User implements Serializable {
 	private BigInteger userId;
 
 	@Column(name = "USERNAME", nullable = false)
+	@NotNull
+	@Size(min=8, max=24) // will only allow names between 8 and 24 characters long
 	private String username;
 
 	@Column(name = "PASSWORD", nullable = false)
 	private String password;
+
+	@Transient
+	private String repassword;
 
 	@Column(name = "ENABLED", nullable = false)
 	private boolean enabled;   
@@ -63,6 +86,7 @@ public class User implements Serializable {
 		this.username = username;
 	}
 
+	
 	public String getPassword() {
 		return password;
 	}
@@ -101,6 +125,14 @@ public class User implements Serializable {
 
 	public void setUserId(BigInteger userId) {
 		this.userId = userId;
+	}
+	
+	public String getRepassword() {
+		return repassword;
+	}
+
+	public void setRepassword(String repassword) {
+		this.repassword = repassword;
 	}
 
 }

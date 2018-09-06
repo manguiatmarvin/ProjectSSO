@@ -22,8 +22,6 @@ public class FieldsValueMatchValidator implements ConstraintValidator<FieldsValu
 		
 	}
 
-
-
 	@Override
 	public boolean isValid(Object value, ConstraintValidatorContext context) {
 		 Object fieldValue = new BeanWrapperImpl(value).getPropertyValue(field);

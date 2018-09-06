@@ -18,20 +18,29 @@
 			<div class="text-danger shadow-none p-3 mb-5 bg-light rounded">${error}</div>
 			<br />
 		</c:if>
+		
+		
 
-		<input name="username" type="text" id="username" class="form-control"
+		<input name="username" type="text" id="username" class="form-control form-control-sm"
 			placeholder="Username" required autofocus> <label
 			for="inputEmail" class="sr-only">Email address</label> <label
-			for="inputPassword" class="sr-only">Password</label> <input
+			for="inputPassword" class="sr-only">Password</label> 
+		<input
 			type="password" name="password" id="inputPassword"
-			class="form-control" placeholder="Password" required>
+			class="form-control form-control-sm" placeholder="Password" required>
 		<div class="checkbox mb-3">
 			<label> <input type="checkbox" value="remember-me"
 				name="remember-me"> Remember me
 			</label>
 		</div>
-		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
-			in</button>
+		
+		
+		<p></p>
+			
+          <button class="d-inline btn btn-primary btn-sm" type="submit" >Sign In</button>
+          <button class="d-inline btn btn-secondary btn-sm" >Cancel</button>
+          <p></p>
+          
 		<small>No Account ? <a href="<c:url value="/sign-up" />">
 				Sign Up</a></small>
 		<p class="mt-5 mb-3 text-muted">&copy; ProjectSSO 2017-2018</p>

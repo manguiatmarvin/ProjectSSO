@@ -67,6 +67,12 @@ public class MyContoller {
 	private ClientCredentialService clientCredentialService;
 
 	final static Logger logger = Logger.getLogger(MyContoller.class);
+	
+	
+	@RequestMapping("/layout")
+	public String getLayout() {
+		return "layout";
+	}
 
 	@RequestMapping("/test")
 	public void test(HttpServletRequest request, HttpServletResponse response) {
@@ -127,7 +133,7 @@ public class MyContoller {
 	}
 
 	@RequestMapping(value = "/sign-up", method = RequestMethod.POST)
-	public ModelAndView saveUser(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model) {
+	public String saveUser(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model) {
 		boolean passwordDidnotMatched = false;
 		String fieldMatchCode = "";
 		String fieldMatchMessage = "";
@@ -145,7 +151,7 @@ public class MyContoller {
 				bindingResult.rejectValue("password", "user", "Password mis-matched.");
 				bindingResult.rejectValue("repassword", "user", "Password mis-matched.");
 			}
-			return new ModelAndView("sign-up");
+			return "sign-up";
 		}
 
 		if (user.getUserId() == null) { // if employee id is 0 then creating the
@@ -163,7 +169,7 @@ public class MyContoller {
 
 		}
 
-		return new ModelAndView("redirect:/");
+		return "redirect:/";
 	}
 
 	/*

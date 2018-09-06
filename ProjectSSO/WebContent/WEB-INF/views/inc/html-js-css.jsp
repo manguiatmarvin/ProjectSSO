@@ -20,6 +20,7 @@ body {
 	max-width: 340px;
 	padding: 15px;
 	margin: auto;
+	 background-color: #ececec;
 }
 
 .form-signin .checkbox {
@@ -38,6 +39,25 @@ body {
 	z-index: 2;
 }
 
+.form-signin .form-control-sm{
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+     padding: 7px; 
+    font-size: 12px;
+    margin:2px 0px 2px 2px;
+   
+}
+
+.form-signin .input-group-sm .form-control-sm{
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+     padding: 7px; 
+    font-size: 12px;
+    margin:2px 0px 2px 2px;
+}
+
 .form-signin input[type="email"] {
 	margin-bottom: -1px;
 	border-bottom-right-radius: 0;
@@ -48,5 +68,10 @@ body {
 	margin-bottom: 10px;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
+}
+
+.error{
+ color:red;
+ font-size:11px
 }
 </style>

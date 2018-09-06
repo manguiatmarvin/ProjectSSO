@@ -19,6 +19,8 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import com.pccw.sso.validators.FieldsValueMatch;
+import com.pccw.sso.validators.Unique;
+
 import javax.persistence.CascadeType;
 
 /**
@@ -46,13 +48,16 @@ public class User implements Serializable {
 
 	@Column(name = "USERNAME", nullable = false)
 	@NotNull
-	@Size(min=8, max=24) // will only allow names between 8 and 24 characters long
+	@Size(min=6, max=24) // will only allow names between 8 and 24 characters long
+	@Unique(message="Sorry, this username is not available")
 	private String username;
 
 	@Column(name = "PASSWORD", nullable = false)
+	@Size(min=8, max=24)
 	private String password;
 
 	@Transient
+	@Size(min=8, max=24)
 	private String repassword;
 
 	@Column(name = "ENABLED", nullable = false)

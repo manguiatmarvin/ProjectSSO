@@ -53,11 +53,11 @@ public class User implements Serializable {
 	private String username;
 
 	@Column(name = "PASSWORD", nullable = false)
-	@Size(min=8, max=24)
+	@Size(min=8, max=50)
 	private String password;
 
 	@Transient
-	@Size(min=8, max=24)
+	@Size(min=8, max=50)
 	private String repassword;
 
 	@Column(name = "ENABLED", nullable = false)

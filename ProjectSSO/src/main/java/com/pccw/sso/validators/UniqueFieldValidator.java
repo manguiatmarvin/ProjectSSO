@@ -21,7 +21,10 @@ public class UniqueFieldValidator implements ConstraintValidator<Unique, String>
 
 	@Override
 	public boolean isValid(String field, ConstraintValidatorContext context) {
-		return userService.getUser(field)==null;
+		String username = "";
+		username = field;
+		User u = userService.getUser(field);
+		return u==null;
 	}
 
 }

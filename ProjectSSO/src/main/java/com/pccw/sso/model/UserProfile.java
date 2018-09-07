@@ -15,24 +15,31 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity()
 @Table(name = "USER_PROFILE")
 public class UserProfile implements Serializable {
-
+    
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private BigInteger id;
-
+    
+	
 	@Column(name = "firstname")
 	private String firstname;
 
+	
+	
 	@Column(name = "lastname")
 	private String lastname;
 
+	
+	
 	@Column(name = "mi")
-	private String middleName;
+	private String middlename;
 
 	@Column(name = "dob")
 	@Temporal(TemporalType.DATE)
@@ -41,6 +48,8 @@ public class UserProfile implements Serializable {
 	@Column(name = "gender")
 	private String gender;
 
+	@NotNull
+	@Size(min=6, max=75) 
 	@Column(name = "email_address")
 	private String emailAddress;
 
@@ -56,9 +65,6 @@ public class UserProfile implements Serializable {
 	@Column(name="modified")
 	private Date modified;
 
-	
-
-	
 	
 
 	public UserProfile() {
@@ -84,13 +90,6 @@ public class UserProfile implements Serializable {
 		this.lastname = lastname;
 	}
 
-	public String getMiddleName() {
-		return middleName;
-	}
-
-	public void setMiddleName(String middleName) {
-		this.middleName = middleName;
-	}
 
 	public Date getDob() {
 		return dob;
@@ -144,6 +143,14 @@ public class UserProfile implements Serializable {
 	}
 	public void setModified(Date modified) {
 		this.modified = modified;
+	}
+	
+	public String getMiddlename() {
+		return middlename;
+	}
+
+	public void setMiddlename(String middlename) {
+		this.middlename = middlename;
 	}
 	
 }

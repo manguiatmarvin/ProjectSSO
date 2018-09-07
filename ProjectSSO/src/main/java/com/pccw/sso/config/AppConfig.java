@@ -63,6 +63,12 @@ public class AppConfig {
     props.put(C3P0_ACQUIRE_INCREMENT, env.getProperty("hibernate.c3p0.acquire_increment"));
     props.put(C3P0_TIMEOUT, env.getProperty("hibernate.c3p0.timeout"));
     props.put(C3P0_MAX_STATEMENTS, env.getProperty("hibernate.c3p0.max_statements"));
+    
+    
+    //Hibernate JPA Cofig 
+    props.put(JPA_VALIDATION_MODE, env.getProperty("spring.jpa.properties.javax.persistence.validation.mode"));
+    
+   
 
     factoryBean.setHibernateProperties(props);
     factoryBean.setAnnotatedClasses(User.class, Authorities.class, UserProfile.class, ClientCredential.class, Employee.class);

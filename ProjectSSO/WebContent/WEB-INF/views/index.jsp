@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Project SSO - Single Sign On Module </title>
-    <link href="<c:url value="/resources/css/dashboard/dashboard.css" />" rel="stylesheet" />
+     <link href="<c:url value="/resources/css/dashboard/dashboard.css" />" rel="stylesheet" />
     <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet" />
     <script src="<c:url value="/resources/js/jquery-3.3.1.min.js" />"></script>
     <script src="<c:url value="/resources/js/bootstrap.js" />"></script>
@@ -29,8 +29,9 @@ $( document ).ready(function() {
       <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="<spring:url value="/logout"/>">Sign out</a>
           
+          <a class="nav-link" href="#" data-toggle="modal" data-target="#confirm-logout-modal">Log out</a>
+         
         </li>
       </ul>
     </nav>
@@ -77,5 +78,29 @@ $( document ).ready(function() {
         </main>
       </div>
     </div>
+    
+    
+  <!-- ## Modals -->
+  <div class="modal fade" id="confirm-logout-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirm Logout</h5>
+       
+      </div>
+      <div class="modal-body">
+       <small>Are you sure you want to logout?</small>
+      </div>
+      <div class="modal-footer">
+      
+        <div>
+        <a class="d-inline btn btn-primary btn-sm" href="<spring:url value="/logout"/>">Yes</a>
+        <a class="d-inline btn btn-secondary btn-sm" href="#" data-dismiss="modal" >No</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>  
   </body>
 </html>

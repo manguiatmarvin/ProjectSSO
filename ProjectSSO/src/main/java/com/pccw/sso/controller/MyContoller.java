@@ -133,7 +133,8 @@ public class MyContoller {
 	}
 
 	@RequestMapping(value = "/sign-up", method = RequestMethod.POST)
-	public String saveUser(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model) {
+	public ModelAndView saveUser(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model) {
+		String page = "";
 		boolean passwordDidnotMatched = false;
 		String fieldMatchCode = "";
 		String fieldMatchMessage = "";
@@ -151,7 +152,8 @@ public class MyContoller {
 				bindingResult.rejectValue("password", "user", "Password mis-matched.");
 				bindingResult.rejectValue("repassword", "user", "Password mis-matched.");
 			}
-			return "sign-up";
+			
+			return new ModelAndView("sign-up");
 		}
 
 		if (user.getUserId() == null) { // if employee id is 0 then creating the
@@ -166,10 +168,11 @@ public class MyContoller {
 			System.out.println(firstname);
 
 			userService.addNewUser(user);
-
+			model.addAttribute("user", user);
+			page =  "sign-up-success";
 		}
 
-		return "redirect:/";
+		return new ModelAndView(page);
 	}
 
 	/*

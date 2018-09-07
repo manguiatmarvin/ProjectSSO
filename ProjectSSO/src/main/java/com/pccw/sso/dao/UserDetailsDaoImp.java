@@ -51,10 +51,10 @@ public class UserDetailsDaoImp implements UserDetailsDao {
 		   user.getAuthorities().forEach((authority)->{authority.setUser(user);});
 		   UserProfile up =  new UserProfile();
 		   up.setDob(new Date());
-		   up.setEmailAddress(user.getUsername()+"@gmail.com");
+		   up.setEmailAddress(user.getUserProfile().getEmailAddress());
 		   up.setFirstname(user.getUserProfile().getFirstname());
-		   up.setLastname(user.getUsername());
-		   up.setMiddleName("");
+		   up.setLastname(user.getUserProfile().getLastname());
+		   up.setMiddlename(user.getUserProfile().getMiddlename());
 		   up.setUser(user);
 		   up.setCreted(new Date());
 		   up.setModified(new Date());

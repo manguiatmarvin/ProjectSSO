@@ -15,6 +15,4 @@ public interface UserService extends UserDetailsService{
 	public void updateUser(User user);
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 	public User getUser(String username) throws UsernameNotFoundException;
-	
-
 }

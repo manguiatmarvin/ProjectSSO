@@ -9,5 +9,6 @@ public interface UserDetailsDao {
       void addUser(User user);
       void deleteUser(BigInteger userId);
       void updateUser(User user);
+      
 
 	}

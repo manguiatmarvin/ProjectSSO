@@ -73,6 +73,36 @@ public class MyContoller {
 	public String getLayout() {
 		return "layout";
 	}
+	
+	
+	@RequestMapping("/edit_application")
+	public String editApplication(Model model, Principal principal,@RequestParam("appid") Long applicationId) {
+		Object[] applicationCred  = null;
+		User u = null;
+		if(principal!=null) {
+			 u =  userService.getUser(principal.getName());
+		    model.addAttribute("user",u);	
+		    if(u.getClientCredential()!=null) {
+		    	Set<ClientCredential> cc = u.getClientCredential();
+		    	 applicationCred = cc.stream().filter(x->x.getId()==applicationId).toArray();
+		    
+		   
+		    	
+		    }
+		   
+		}
+		
+		model.addAttribute("user",u);
+		
+		if(applicationCred.length > 0) {
+			model.addAttribute("clientCredential", applicationCred[0]);
+			return "edit_application";
+		}else {
+			model.addAttribute("user",principal);
+			return "403";
+		}
+		
+	}
 
 	@RequestMapping("/test")
 	public void test(HttpServletRequest request, HttpServletResponse response) {
@@ -104,6 +134,18 @@ public class MyContoller {
 			e.printStackTrace();
 		}
 
+	}
+	
+	@RequestMapping("/application_list")
+	public String viewApplicationList(Model model, Principal principal) {
+		if(principal.getName()!=null) {
+			User u =  userService.getUser(principal.getName());
+			System.out.println("u.getClientCredential().size(): "+u.getClientCredential().size());
+			model.addAttribute("user",u);
+			return "application_list";
+		}
+		
+		return "index";
 	}
 
 	@RequestMapping("/")

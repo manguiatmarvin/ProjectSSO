@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="CLIENT_CREDENTIAL")
-public class ClientCredential extends Model implements Serializable {
+public class ClientCredential implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,8 +36,17 @@ public class ClientCredential extends Model implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName="id")
 	private User user;
+	
+	@Column(name = "ENABLED", nullable = false)
+	private boolean isActive;
 
 	
+	public boolean isActive() {
+		return isActive;
+	}
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
 	public Long getId() {
 		return id;
 	}

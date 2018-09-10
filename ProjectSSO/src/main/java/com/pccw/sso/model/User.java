@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
@@ -66,10 +67,11 @@ public class User implements Serializable {
 	@OneToMany(fetch = FetchType.EAGER ,cascade = CascadeType.ALL, mappedBy = "user")
 	private Set<Authorities> authorities = new HashSet<>();
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
+	@OrderBy("created ASC")
 	private Set<ClientCredential> clientCredential = new HashSet<>();
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy="user")
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="user")
 	private UserProfile userProfile;
 
 	public User() {

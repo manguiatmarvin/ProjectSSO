@@ -41,15 +41,15 @@ $( document ).ready(function() {
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="#">
+                <a class="nav-link" href="./">
                   <span data-feather="home"></span>
-                  Dashboard <span class="sr-only">(current)</span>
+                  Dashboard
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./application_list">
+                <a class="nav-link active" href="./application_list">
                   <span data-feather="file"></span>
-                  Application List
+                  Application List <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -63,17 +63,42 @@ $( document ).ready(function() {
         </nav>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Dashboard</h1>
-            <div class="btn-toolbar mb-2 mb-md-0">
+            <h1 class="h2">Application List</h1>
+            <div class="btn-toolbar mb-2 mb-md-1">
               <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-secondary">Share</button>
-                <button class="btn btn-sm btn-outline-secondary">Export</button>
+                <button class="btn btn-sm  btn-primary">Add New</button>
               </div>
-              <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                <span data-feather="calendar"></span>
-                This week
-              </button>
             </div>
+          </div>
+          
+          <div>
+          <c:if test="${not empty user.getClientCredential()}">
+		   <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Application</th>
+                  <th>Client ID</th>
+                  <th>Client Secret</th>
+                  <th>Redirect URL</th>
+                  <th>IS Active</th>
+                </tr>
+              </thead>
+			 <tbody>
+			   
+			 <c:forEach var="listItems" items="${user.getClientCredential()}">
+			 <tr>
+                  <td>${listItems.getId()}</td>
+                  <td><a href="<spring:url value="/edit_application?appid=${listItems.getId()}"/>" title="${listItems.getApplicationName()}">${listItems.getApplicationName()}</a></td>
+                  <td>${listItems.getClientId()}</td>
+                  <td>${listItems.getClientSecret()}</td>
+                  <td>${listItems.getCallBackUrl()}</td>   
+                  <td><input type="checkbox" name="selected" ${listItems.isActive() ? "checked":"" } disabled></td>
+                <tr>
+              </c:forEach>
+             </tbody>
+		  </c:if>
           </div>
         </main>
       </div>

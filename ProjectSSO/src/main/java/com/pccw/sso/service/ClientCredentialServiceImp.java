@@ -1,5 +1,7 @@
 package com.pccw.sso.service;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,9 +25,33 @@ public class ClientCredentialServiceImp implements ClientCredentialService {
 	
 	@Override
 	@Transactional
-	public ClientCredential getClientCredentials(String clientId) {
+	public ClientCredential getClientCredentials(String userId) {
 		// TODO Auto-generated method stub
-		return clientCredentialDao.getClientCredentials(clientId);
+		return clientCredentialDao.getClientCredentials(userId);
+	}
+
+	@Override
+	public Set<ClientCredential> getAllClientCredentials(String clientId) {
+		// TODO Auto-generated method stub
+		return clientCredentialDao.getAllClientCredentialByClientId(clientId);
+	}
+
+	@Override
+	public void addClientCredential(ClientCredential c) {
+		clientCredentialDao.saveClientCredentialByClientId(c);
+		
+	}
+
+	@Override
+	public void updateClientCredential(ClientCredential c) {
+		clientCredentialDao.updateClientCredentialByClientId(c);
+		
+	}
+
+	@Override
+	public void deleteClientCredential(ClientCredential c) {
+		clientCredentialDao.deleteClientCredentialByClientId(c);
+		
 	}
 
 	

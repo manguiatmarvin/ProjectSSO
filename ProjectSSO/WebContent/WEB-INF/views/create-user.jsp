@@ -33,12 +33,6 @@
 				placeholder='Firstname' />
 			<form:label path="userProfile.firstname" cssClass="sr-only ">Enter  Firstname:</form:label>
 
-			
-
-
-    
-
-
 
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
 				in</button>
